@@ -1,0 +1,191 @@
+# Decap CMS configuration.
+#
+# Editors sign in with their GitHub account. Edits commit to the repo on
+# the `main` branch; Netlify rebuilds within ~30 seconds.
+#
+# Required Netlify setup (one-time, by the developer):
+#   1. Create the GitHub repo under a CHURCH-OWNED account, not personal.
+#   2. In Netlify > Site settings > Identity: NOT USED. We use Decap's
+#      GitHub backend directly.
+#   3. In GitHub: create an OAuth App, point the callback at the Netlify
+#      site URL, and add the client_id / secret to Netlify env.
+#   4. Optionally use the Netlify "OAuth provider for Git Gateway"
+#      documented at decapcms.org/docs/github-backend/ — does NOT require
+#      the deprecated Git Gateway service.
+
+backend:
+  name: github
+  repo: REPLACE_ME_ORG/church-sound-site
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+media_folder: public/uploads
+public_folder: /uploads
+
+# All uploaded images are auto-resized to a max width of 1600px to
+# prevent Git repo bloat (see SPRINT-001 risk table).
+media_library:
+  name: default
+  config:
+    max_file_size: 512000  # 500 KB ceiling — build also enforces this
+
+collections:
+  - name: equipment
+    label: Equipment
+    label_singular: Equipment item
+    folder: src/content/equipment
+    create: true
+    slug: '{{ref_id}}'
+    fields:
+      - {name: ref_id, label: Reference ID (short, no spaces), widget: string}
+      - {name: name, label: Friendly name, widget: string}
+      - name: category
+        label: Category
+        widget: select
+        options:
+          - {label: Mixer / sound board, value: mixer}
+          - {label: Microphone, value: microphone}
+          - {label: Cable, value: cable}
+          - {label: Speaker, value: speaker}
+          - {label: Stage monitor, value: monitor}
+          - {label: DI box, value: di-box}
+          - {label: Wireless receiver, value: wireless-receiver}
+          - {label: Amplifier, value: amplifier}
+          - {label: Snake, value: snake}
+          - {label: Stand, value: stand}
+          - {label: Other, value: other}
+      - {name: make, label: Make, widget: string, required: false}
+      - {name: model, label: Model, widget: string, required: false}
+      - {name: quantity, label: Quantity, widget: number, default: 1, min: 0}
+      - name: status
+        label: Status
+        widget: select
+        default: active
+        options:
+          - {label: Active (in service), value: active}
+          - {label: Retired, value: retired}
+          - {label: Loaned out, value: loaned}
+          - {label: Missing, value: missing}
+      - {name: location, label: Where it lives, widget: string, required: false}
+      - {name: photo, label: Photo, widget: image, required: false}
+      - {name: public_notes, label: Public notes (visible to anyone), widget: text, required: false}
+      - {name: internal_notes, label: Internal notes (NOT shown publicly — serial numbers, donor info, etc.), widget: text, required: false}
+      - {name: body, label: Description (optional), widget: markdown, required: false}
+
+  - name: issues
+    label: Issues
+    label_singular: Issue
+    folder: src/content/issues
+    create: true
+    slug: '{{year}}-{{month}}-{{slug}}'
+    fields:
+      - {name: title, label: Short title, widget: string}
+      - {name: equipment_ref, label: Affected equipment ref-id (optional), widget: string, required: false}
+      - {name: symptom, label: Symptom (use a value from symptoms.yml), widget: string}
+      - name: severity
+        label: Severity
+        widget: select
+        default: medium
+        options: [low, medium, high]
+      - name: status
+        label: Status
+        widget: select
+        default: open
+        options:
+          - {label: Open, value: open}
+          - {label: Recurring, value: recurring}
+          - {label: Resolved, value: resolved}
+      - {name: first_seen, label: First seen, widget: date}
+      - {name: last_seen, label: Last seen (optional), widget: date, required: false}
+      - {name: attempted_fixes, label: Attempted fixes, widget: list, required: false}
+      - {name: plain_description, label: Plain-language description, widget: text}
+      - name: source
+        label: How reported
+        widget: select
+        default: cms
+        options:
+          - {label: Logged directly in CMS, value: cms}
+          - {label: Promoted from public form submission, value: form-promoted}
+      - {name: body, label: Body (optional), widget: markdown, required: false}
+
+  - name: suggestions
+    label: Suggestion rules
+    label_singular: Suggestion
+    folder: src/content/suggestions
+    create: true
+    slug: '{{symptom}}-{{slug}}'
+    fields:
+      - {name: symptom, label: Symptom id (must match a value in symptoms.yml), widget: string}
+      - {name: equipment_categories, label: Equipment categories this applies to, widget: list, required: false}
+      - {name: check_first, label: Check first (numbered list of safe checks), widget: list}
+      - {name: safe_fix, label: Safe fix (steps that will not damage gear), widget: list}
+      - {name: escalation_trigger, label: Escalate to experienced person if..., widget: string, required: false}
+      - {name: do_not_do, label: Do NOT do, widget: list, required: false}
+      - name: replacements
+        label: Replacement gear suggestions
+        widget: list
+        required: false
+        fields:
+          - {name: label, label: Product label, widget: string}
+          - {name: price_range, label: Price range, widget: string}
+          - {name: source, label: Source URL (neutral retailer preferred), widget: string}
+          - {name: lastVerified, label: Last verified date, widget: date}
+      - name: confidence
+        label: Confidence
+        widget: select
+        default: needs-review
+        options: [high, medium, needs-review]
+      - {name: priority, label: Priority (higher renders first), widget: number, default: 50}
+      - name: status
+        label: Status
+        widget: select
+        default: draft
+        options:
+          - {label: Draft (NOT public), value: draft}
+          - {label: Reviewed (corrections pending), value: reviewed}
+          - {label: Approved (renders publicly), value: approved}
+      - {name: reviewedBy, label: Reviewed by (must match reviewers.yml), widget: string, required: false}
+      - {name: reviewedDate, label: Reviewed date, widget: date, required: false}
+      - {name: lastVerified, label: Last verified date, widget: date, required: false}
+      - {name: body, label: Notes, widget: markdown, required: false}
+
+  - name: scenes
+    label: Board scenes (known-good setups)
+    label_singular: Scene
+    folder: src/content/scenes
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - name: boardType
+        label: Board type
+        widget: select
+        options:
+          - {label: Digital (has scene memory), value: digital}
+          - {label: Analog, value: analog}
+      - {name: name, label: Scene name, widget: string}
+      - {name: scene_number, label: Scene number on the board (digital only), widget: number, required: false}
+      - {name: service_context, label: Service context (e.g. Sunday morning), widget: string}
+      - {name: photo, label: Photo of the board, widget: image, required: false}
+      - {name: diagram, label: Channel diagram (analog only), widget: image, required: false}
+      - {name: channel_notes, label: Per-channel notes, widget: list}
+      - {name: saved_by, label: Saved by, widget: string}
+      - {name: saved_date, label: Saved date, widget: date}
+      - {name: body, label: Notes (optional), widget: markdown, required: false}
+
+  - name: articles
+    label: Education articles
+    label_singular: Article
+    folder: src/content/articles
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - {name: title, label: Title, widget: string}
+      - name: level
+        label: Level
+        widget: select
+        default: beginner
+        options: [beginner, intermediate]
+      - {name: estimated_minutes, label: Estimated reading time (minutes), widget: number, default: 5}
+      - {name: updated, label: Last updated, widget: date}
+      - {name: body, label: Body, widget: markdown}

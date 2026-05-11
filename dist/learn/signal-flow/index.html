@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><meta name="theme-color" content="#fafaf9"><meta name="description" content="Church Sound System Helper"><title>How sound flows through our system</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/_astro/board-reset.D3RVo2j_.css"><script type="module" src="/_astro/page.D2RhrP0O.js"></script></head> <body> <header class="border-b border-ink/10 bg-white"> <nav class="mx-auto max-w-screen-md px-4 py-3 flex items-center justify-between"> <a href="/" class="font-semibold text-ink no-underline">Church Sound Helper</a> <a href="/report-issue" class="text-sm rounded-md bg-accent text-white px-3 py-2 no-underline">Report a problem</a> </nav> </header> <main class="mx-auto max-w-screen-md px-4 py-6">  <p class="text-sm text-ink/60"><a href="/learn">← Learn</a></p> <h1>How sound flows through our system</h1> <p class="text-sm text-ink/60 mb-4"> beginner · about 6 min ·
+    updated 2026-05-11 </p> <article class="prose"> <p>If you’ve ever wondered “what actually happens between someone singing
+into a mic and the sound coming out of the speakers,” this article is for
+you. Understanding the path the signal takes is the single most useful
+thing you can know — almost every troubleshooting decision starts with
+“where in the chain is the problem?”</p>
+<h2 id="the-chain-in-plain-english">The chain, in plain English</h2>
+<p>A sound signal travels through our system in this order:</p>
+<ol>
+<li><strong>Source</strong> — A voice or instrument makes a sound.</li>
+<li><strong>Microphone or DI box</strong> — Converts the sound into a tiny electrical signal.</li>
+<li><strong>XLR cable (or 1/4” cable)</strong> — Carries the tiny signal to the mixer.</li>
+<li><strong>Mixer input — TRIM (also called GAIN)</strong> — Boosts the tiny signal up to a “good” level for the rest of the board.</li>
+<li><strong>Channel processing</strong> — EQ, compression, etc. (We usually leave these alone.)</li>
+<li><strong>Channel fader</strong> — How loud this channel is in the main mix.</li>
+<li><strong>Master fader</strong> — How loud the overall mix is.</li>
+<li><strong>Amplifier (if separate)</strong> — Boosts the signal one more time to drive the speakers.</li>
+<li><strong>Speaker cable</strong> — Carries the now-loud signal to the speakers.</li>
+<li><strong>Speakers</strong> — Convert the electrical signal back into sound.</li>
+</ol>
+<p>If you can’t hear something, the question is always: <strong>which step is the
+problem?</strong> Test in order:</p>
+<ul>
+<li>Is the mic on / battery good? <em>(step 2)</em></li>
+<li>Is the cable plugged in at both ends? <em>(step 3)</em></li>
+<li>Is the TRIM up? <em>(step 4)</em></li>
+<li>Is the channel UNMUTED and the fader UP? <em>(step 6)</em></li>
+<li>Is the master fader UP? <em>(step 7)</em></li>
+<li>Are the speakers on and getting signal? <em>(steps 8–10)</em></li>
+</ul>
+<h2 id="two-parallel-chains-mains-and-monitors">Two parallel chains: mains and monitors</h2>
+<p>Almost everything on the board exists in <strong>two copies</strong> — one for the
+<strong>main mix</strong> (what the congregation hears) and one for the <strong>monitor
+mix</strong> (what the band hears on stage).</p>
+<p>That’s why every channel has an AUX send (or several): the AUX is the
+“send some of this channel to the monitor.” The fader is the “send some
+of this channel to the main mix.”</p>
+<p>When a singer says “I can’t hear myself in my monitor,” you change their
+AUX send, not their fader. When the room is too loud, you change the
+master fader, not the AUX.</p>
+<h2 id="why-this-matters">Why this matters</h2>
+<p>Almost every “weird” sound problem becomes obvious once you ask “where
+in the chain?” Cable problems happen at step 3. Phantom power problems
+happen at step 4. Feedback happens because step 10 leaks back into step
+2 in a loop. Clipping happens at step 4 when TRIM is too high.</p>
+<p>If you remember nothing else, remember the order — and remember that
+<strong>monitors and mains are separate.</strong></p> </article>  </main> <footer class="mx-auto max-w-screen-md px-4 py-6 mt-12 border-t border-ink/10 text-sm text-ink/70"> <p>
+Suggestions on this site are guidance, not professional advice.
+        If you are unsure, stop and ask an experienced sound engineer.
+</p> <p class="mt-2"> <a href="/learn">Learn the basics</a>
+&middot;
+<a href="/troubleshoot">Troubleshoot</a>
+&middot;
+<a href="/board-reset">Reset the board</a> </p> </footer> </body></html>

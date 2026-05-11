@@ -1,0 +1,19 @@
+# Authorized suggestion reviewers. Every approved suggestion must have a
+# `reviewedBy` value that matches one of these names. The build will FAIL
+# if it doesn't.
+#
+# Add a real entry here BEFORE the experienced sound reviewer approves
+# their first rule. The placeholder entries below are NOT real and will
+# need to be replaced.
+
+- name: PLACEHOLDER — replace with experienced sound reviewer
+  role: live-sound-reviewer
+  email: replace-me@example.org
+
+- name: PLACEHOLDER — deacon
+  role: editor
+  email: replace-me@example.org
+
+- name: PLACEHOLDER — backup editor
+  role: editor
+  email: replace-me@example.org

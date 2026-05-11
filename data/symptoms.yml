@@ -1,0 +1,51 @@
+# Plain-language symptoms. Editors pick from this list when filing an issue
+# or browsing the troubleshoot page. Keep wording in volunteer-friendly
+# English, NOT audio engineer jargon.
+
+- id: cable-crackle
+  label: A cable is crackling or cutting out
+  category: cable
+
+- id: no-sound
+  label: No sound at all
+  category: general
+
+- id: feedback
+  label: Feedback or squealing
+  category: general
+
+- id: monitor-too-quiet
+  label: Stage monitor is too quiet
+  category: monitor
+
+- id: settings-drift
+  label: Board settings changed after the other congregation used it
+  category: general
+
+- id: phantom-power-missing
+  label: Condenser mic has no signal (phantom power may be off)
+  category: microphone
+
+- id: wireless-cuts-out
+  label: Wireless mic drops out or has static
+  category: wireless-receiver
+
+- id: room-sounds-bad
+  label: The room sounds bad but nothing specific is broken
+  category: general
+
+- id: board-too-complex
+  label: Volunteer cannot figure out the board
+  category: general
+
+- id: signal-clipping
+  label: A channel sounds distorted or clipped
+  category: mixer
+
+- id: hum-buzz
+  label: Constant hum or buzz in the speakers
+  category: general
+
+- id: monitor-feedback
+  label: Feedback only in a stage monitor
+  category: monitor

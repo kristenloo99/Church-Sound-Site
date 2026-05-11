@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><meta name="theme-color" content="#fafaf9"><meta name="description" content="Church Sound System Helper"><title>Report a problem</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/_astro/board-reset.D3RVo2j_.css"><script type="module" src="/_astro/page.D2RhrP0O.js"></script></head> <body> <header class="border-b border-ink/10 bg-white"> <nav class="mx-auto max-w-screen-md px-4 py-3 flex items-center justify-between"> <a href="/" class="font-semibold text-ink no-underline">Church Sound Helper</a> <a href="/report-issue" class="text-sm rounded-md bg-accent text-white px-3 py-2 no-underline">Report a problem</a> </nav> </header> <main class="mx-auto max-w-screen-md px-4 py-6">  <p class="text-sm text-ink/60"><a href="/">← Home</a></p> <h1>Report a problem</h1>  <p class="text-ink/70 mb-4">
+Noticed a broken cable, weird buzz, settings that look wrong, or
+        anything else? Tell us here. No login needed. The deacon will get
+        an email and decide what to do.
+</p> <form name="report-issue" method="POST" netlify netlify-honeypot="bot-field" action="/report-issue?ok=1" class="space-y-4"> <input type="hidden" name="form-name" value="report-issue"> <p hidden> <label>Don't fill this out: <input name="bot-field"></label> </p> <div> <label for="symptom" class="block text-sm font-medium mb-1">
+What kind of problem?
+</label> <select id="symptom" name="symptom" required class="w-full rounded-md border-ink/20 border px-3 py-2"> <option value="">— pick one —</option> <option value="cable-crackle">A cable is crackling or cutting out</option> <option value="no-sound">No sound at all</option> <option value="feedback">Feedback or squealing</option> <option value="monitor-too-quiet">Stage monitor too quiet</option> <option value="settings-drift">Board settings changed</option> <option value="phantom-power-missing">Mic has no signal</option> <option value="wireless-cuts-out">Wireless mic cutting out</option> <option value="hum-buzz">Hum or buzz</option> <option value="signal-clipping">Distortion / clipping</option> <option value="other">Something else</option> </select> </div> <div> <label for="equipment" class="block text-sm font-medium mb-1">
+Which equipment? (optional)
+</label> <input id="equipment" name="equipment" type="text" placeholder="e.g., channel 4 XLR cable, or 'not sure'" class="w-full rounded-md border-ink/20 border px-3 py-2"> </div> <div> <label for="description" class="block text-sm font-medium mb-1">
+Describe what you noticed
+</label> <textarea id="description" name="description" rows="4" required placeholder="What did you hear or see? When did it happen?" class="w-full rounded-md border-ink/20 border px-3 py-2"></textarea> </div> <div> <label for="name" class="block text-sm font-medium mb-1">
+Your name (optional)
+</label> <input id="name" name="name" type="text" class="w-full rounded-md border-ink/20 border px-3 py-2"> </div> <button type="submit" class="rounded-md bg-accent text-white px-5 py-3 font-semibold">
+Send report
+</button> </form> <p class="mt-6 text-xs text-ink/60">
+Reports go to the deacon's email. They will not appear on this site
+        unless the deacon promotes them into the public issue log.
+</p>  </main> <footer class="mx-auto max-w-screen-md px-4 py-6 mt-12 border-t border-ink/10 text-sm text-ink/70"> <p>
+Suggestions on this site are guidance, not professional advice.
+        If you are unsure, stop and ask an experienced sound engineer.
+</p> <p class="mt-2"> <a href="/learn">Learn the basics</a>
+&middot;
+<a href="/troubleshoot">Troubleshoot</a>
+&middot;
+<a href="/board-reset">Reset the board</a> </p> </footer> </body></html>
